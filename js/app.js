@@ -31,6 +31,10 @@ const App = {
     document.getElementById('sidebar-username').textContent = 'Coach Developer';
     document.getElementById('sidebar-role').textContent = 'Liitto / Coach Developer';
 
+    // Poistetaan kirjautumisnäyttö jos vanha versio vielä cachessa
+    const ls = document.getElementById('login-screen');
+    if (ls) ls.remove();
+
     this.navigate('dashboard');
   },
 
