@@ -862,3 +862,156 @@ select.form-group select, select {
 @keyframes slideUp { from { transform: translateY(100%) } to { transform: translateY(0) } }
 @keyframes scaleIn { from { transform: scale(.95); opacity: 0 } to { transform: scale(1); opacity: 1 } }
 @keyframes toastIn { from { transform: translateY(16px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
+
+/* ============================================
+   LISÄTYYLIT – Views v2
+   ============================================ */
+
+/* Observation cards */
+.obs-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: all var(--transition);
+  border-left: 3px solid var(--sjl-blue);
+}
+.obs-card:hover { box-shadow: var(--shadow); transform: translateY(-1px); }
+.obs-card-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+.obs-coach-name { font-size: 0.95rem; font-weight: 700; color: var(--text-primary); }
+.obs-meta { font-size: 0.75rem; color: var(--text-light); }
+.obs-notes {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+.stars-row { display: flex; gap: 2px; margin: 4px 0; }
+.obs-section-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--sjl-blue);
+  border-bottom: 2px solid rgba(0,46,109,0.1);
+  padding-bottom: 6px;
+}
+
+/* Mini ratings bars */
+.mini-ratings { margin-top: 8px; display: grid; gap: 4px; }
+.mini-rating-row { display: flex; align-items: center; gap: 8px; }
+.mini-rating-label {
+  font-size: 0.72rem;
+  color: var(--text-light);
+  min-width: 110px;
+  max-width: 110px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mini-bar { flex: 1; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+.mini-fill { height: 100%; background: var(--sjl-ice); border-radius: 2px; }
+.mini-val { font-size: 0.7rem; font-weight: 700; color: var(--sjl-blue); min-width: 16px; text-align: right; }
+
+/* Coach avatar generic */
+.coach-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--sjl-blue);
+  color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+/* Criteria icon colors fix */
+.criteria-icon-lajitaidot { background: var(--sjl-blue); }
+.criteria-icon-vuorovaikutus { background: var(--sjl-ice); }
+.criteria-icon-suunnittelu { background: var(--sjl-gold); }
+
+/* ============================================
+   VIEWS V2 – TÄYDENNYKSET
+   ============================================ */
+
+/* Chip filter buttons */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1.5px solid var(--border);
+  background: white;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition);
+  flex-shrink: 0;
+}
+.chip:hover { border-color: var(--sjl-blue); color: var(--sjl-blue); }
+.chip.selected { background: var(--sjl-blue); border-color: var(--sjl-blue); color: white; }
+
+/* btn-ice */
+.btn-ice {
+  background: rgba(0,172,215,0.1);
+  color: var(--sjl-ice);
+  border: 1.5px solid rgba(0,172,215,0.3);
+  padding: 9px 16px;
+  border-radius: var(--radius);
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.btn-ice:hover { background: var(--sjl-ice); color: white; }
+
+/* list-item-subtitle */
+.list-item-subtitle {
+  font-size: 0.72rem;
+  color: var(--text-light);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* badge-blue */
+.badge-blue { background: rgba(0,46,109,0.1); color: var(--sjl-blue); }
+
+/* Missing spacing */
+.mb-10 { margin-bottom: 10px; }
+.mb-16 { margin-bottom: 16px; }
+
+/* counter-row (if not complete) */
+.counter-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.counter-info { flex: 1; }
+.counter-name { font-size: 0.88rem; font-weight: 700; }
+.counter-sub { font-size: 0.72rem; color: var(--text-light); margin-top: 2px; }
+.counter-controls { display: flex; align-items: center; gap: 12px; }
+.counter-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--sjl-blue);
+  background: white;
+  color: var(--sjl-blue);
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all var(--transition);
+}
+.counter-btn:hover { background: var(--sjl-blue); color: white; }
+.counter-value { font-size: 1.3rem; font-weight: 700; color: var(--sjl-blue); min-width: 28px; text-align: center; }
