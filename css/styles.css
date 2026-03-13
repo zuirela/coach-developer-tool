@@ -67,8 +67,7 @@ img { max-width: 100%; display: block; }
    LOGIN
    ============================================ */
 #login-screen {
-  min-height: 100vh;
-  display: flex;
+  display: none !important;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, var(--sjl-night) 0%, var(--sjl-blue) 60%, #003c8a 100%);
