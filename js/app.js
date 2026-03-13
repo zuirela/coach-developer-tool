@@ -19,80 +19,22 @@ const App = {
   /* ---------- INIT ---------- */
   init() {
     Modal.init();
-    this.bindLogin();
     this.bindNavigation();
     this.bindSidebar();
     this.updateNotifBadge();
 
-    // If user was already logged in (session persistence)
-    const savedUser = CDApp.load('session');
-    if (savedUser) {
-      CDApp.state.user = savedUser.user;
-      CDApp.state.role = savedUser.role;
-      this.showApp(savedUser.user, savedUser.role);
-    }
-  },
-
-  /* ---------- LOGIN ---------- */
-  bindLogin() {
-    // Role selector
-    document.querySelectorAll('.role-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-      });
-    });
-
-    document.getElementById('login-btn').addEventListener('click', () => this.doLogin());
-
-    // Allow Enter key
-    ['login-email','login-password'].forEach(id => {
-      document.getElementById(id).addEventListener('keydown', e => {
-        if (e.key === 'Enter') this.doLogin();
-      });
-    });
-  },
-
-  doLogin() {
-    const email    = document.getElementById('login-email').value.trim();
-    const password = document.getElementById('login-password').value;
-    const roleBtn  = document.querySelector('.role-btn.active');
-    const role     = roleBtn?.dataset.role || 'liitto';
-
-    if (!email || !password) {
-      Toast.show('Syötä sähköposti ja salasana', 'error');
-      return;
-    }
-
-    // Demo login – accept any credentials
-    const name = email.split('@')[0].replace(/[._]/g,' ').replace(/\b\w/g, l => l.toUpperCase()) || 'Käyttäjä';
-    const user = { name, email, role };
-    CDApp.state.user = user;
-    CDApp.state.role = role;
-    CDApp.save('session', { user, role });
-
-    this.showApp(user, role);
-  },
-
-  showApp(user, role) {
-    // Setup user info in UI
-    const initials = user.name.split(' ').map(p => p[0]).join('').slice(0,2).toUpperCase();
-    document.getElementById('avatar-initials').textContent = initials;
-    document.getElementById('sidebar-initials').textContent = initials;
-    document.getElementById('sidebar-username').textContent = user.name;
-
-    const roleLabels = { liitto: 'Liitto / Coach Developer', seura: 'Valmennuspäällikkö', valmentaja: 'Valmentaja' };
-    document.getElementById('sidebar-role').textContent = roleLabels[role] || role;
-
-    // Switch screens
-    document.getElementById('login-screen').classList.remove('active');
-    document.getElementById('app-screen').classList.add('active');
-    document.body.classList.remove('login-page');
+    // Auto-login ilman kirjautumista
+    CDApp.state.user = { name: 'Coach Developer', email: 'demo@sjl.fi', role: 'liitto' };
+    CDApp.state.role = 'liitto';
+    document.getElementById('avatar-initials').textContent = 'CD';
+    document.getElementById('sidebar-initials').textContent = 'CD';
+    document.getElementById('sidebar-username').textContent = 'Coach Developer';
+    document.getElementById('sidebar-role').textContent = 'Liitto / Coach Developer';
 
     this.navigate('dashboard');
   },
 
-  /* ---------- NAVIGATION ---------- */
+    /* ---------- NAVIGATION ---------- */
   bindNavigation() {
     document.addEventListener('click', e => {
       const navItem = e.target.closest('[data-view]');
@@ -102,15 +44,18 @@ const App = {
       if (view) this.navigate(view);
     });
 
-    document.getElementById('logout-btn').addEventListener('click', e => {
-      e.preventDefault();
-      CDApp.save('session', null);
-      CDApp.state.user = null;
-      document.getElementById('app-screen').classList.remove('active');
-      document.getElementById('login-screen').classList.add('active');
-      document.body.classList.add('login-page');
-      this.closeSidebar();
-    });
+    const logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', e => {
+        e.preventDefault();
+        // Tyhjennä data ja lataa sivu uudelleen
+        if (confirm('Nollataan sovelluksen data?')) {
+          localStorage.clear();
+          window.location.reload();
+        }
+        this.closeSidebar();
+      });
+    }
 
     document.getElementById('notif-btn').addEventListener('click', () => {
       this.showNotifications();
