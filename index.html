@@ -11,68 +11,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,700;1,400&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
 </head>
-<body class="login-page">
-
-  <!-- LOGIN SCREEN -->
-  <div id="login-screen" class="screen active">
-    <div class="login-bg">
-      <div class="login-overlay"></div>
-      <div class="ice-pattern"></div>
-    </div>
-    <div class="login-container">
-      <div class="login-logo">
-        <img src="assets/sjl-tunnus.png" alt="Suomen Jääkiekkoliitto" class="login-logo-img">
-        <div class="login-title-block">
-          <span class="login-org">Suomen Jääkiekkoliitto</span>
-          <h1 class="login-app-name">Coach Developer Tool</h1>
-        </div>
-      </div>
-
-      <div class="login-card">
-        <h2 class="login-card-title">Kirjaudu sisään</h2>
-        
-        <div class="form-group">
-          <label for="login-email">Sähköposti</label>
-          <input type="email" id="login-email" placeholder="etunimi.sukunimi@esimerkki.fi" autocomplete="email">
-        </div>
-        <div class="form-group">
-          <label for="login-password">Salasana</label>
-          <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password">
-        </div>
-
-        <div class="role-selector">
-          <label class="role-label">Rooli</label>
-          <div class="role-options">
-            <button class="role-btn active" data-role="liitto">
-              <span class="role-icon">🏒</span>
-              <span>Liitto</span>
-            </button>
-            <button class="role-btn" data-role="seura">
-              <span class="role-icon">🏟️</span>
-              <span>Seura</span>
-            </button>
-            <button class="role-btn" data-role="valmentaja">
-              <span class="role-icon">👤</span>
-              <span>Valmentaja</span>
-            </button>
-          </div>
-        </div>
-
-        <button id="login-btn" class="btn-primary btn-full">Kirjaudu sisään</button>
-        
-        <div class="login-demo-hint">
-          <span>Demo: käytä mitä tahansa sähköpostia ja salasanaa</span>
-        </div>
-      </div>
-
-      <div class="login-footer">
-        <span>© 2024 Suomen Jääkiekkoliitto</span>
-      </div>
-    </div>
-  </div>
+<body>
 
   <!-- MAIN APP SHELL -->
-  <div id="app-screen" class="screen">
+  <div id="app-screen" class="screen active">
     
     <!-- TOP NAV BAR -->
     <header class="top-bar">
