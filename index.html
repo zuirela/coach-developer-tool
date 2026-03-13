@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="Coach Developer Tool – Valmentajien osaamisen kehittäminen">
+  <meta name="theme-color" content="#002E6D">
+  <title>Coach Developer Tool – SJL</title>
+  <link rel="icon" type="image/png" href="assets/sjl-tunnus.png">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,700;1,400&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body class="login-page">
+
+  <!-- LOGIN SCREEN -->
+  <div id="login-screen" class="screen active">
+    <div class="login-bg">
+      <div class="login-overlay"></div>
+      <div class="ice-pattern"></div>
+    </div>
+    <div class="login-container">
+      <div class="login-logo">
+        <img src="assets/sjl-tunnus.png" alt="Suomen Jääkiekkoliitto" class="login-logo-img">
+        <div class="login-title-block">
+          <span class="login-org">Suomen Jääkiekkoliitto</span>
+          <h1 class="login-app-name">Coach Developer Tool</h1>
+        </div>
+      </div>
+
+      <div class="login-card">
+        <h2 class="login-card-title">Kirjaudu sisään</h2>
+        
+        <div class="form-group">
+          <label for="login-email">Sähköposti</label>
+          <input type="email" id="login-email" placeholder="etunimi.sukunimi@esimerkki.fi" autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="login-password">Salasana</label>
+          <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password">
+        </div>
+
+        <div class="role-selector">
+          <label class="role-label">Rooli</label>
+          <div class="role-options">
+            <button class="role-btn active" data-role="liitto">
+              <span class="role-icon">🏒</span>
+              <span>Liitto</span>
+            </button>
+            <button class="role-btn" data-role="seura">
+              <span class="role-icon">🏟️</span>
+              <span>Seura</span>
+            </button>
+            <button class="role-btn" data-role="valmentaja">
+              <span class="role-icon">👤</span>
+              <span>Valmentaja</span>
+            </button>
+          </div>
+        </div>
+
+        <button id="login-btn" class="btn-primary btn-full">Kirjaudu sisään</button>
+        
+        <div class="login-demo-hint">
+          <span>Demo: käytä mitä tahansa sähköpostia ja salasanaa</span>
+        </div>
+      </div>
+
+      <div class="login-footer">
+        <span>© 2024 Suomen Jääkiekkoliitto</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN APP SHELL -->
+  <div id="app-screen" class="screen">
+    
+    <!-- TOP NAV BAR -->
+    <header class="top-bar">
+      <div class="top-bar-left">
+        <button id="menu-toggle" class="icon-btn" aria-label="Valikko">
+          <span class="hamburger"></span>
+        </button>
+        <img src="assets/sjl-tunnus.png" alt="SJL" class="top-logo">
+        <span class="top-app-title">Coach Developer</span>
+      </div>
+      <div class="top-bar-right">
+        <button class="icon-btn notification-btn" id="notif-btn" aria-label="Ilmoitukset">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+          <span class="notif-badge" id="notif-badge">2</span>
+        </button>
+        <button class="avatar-btn" id="profile-btn" aria-label="Profiili">
+          <span id="avatar-initials">KE</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- SIDEBAR NAVIGATION -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar">
+          <span id="sidebar-initials">KE</span>
+        </div>
+        <div class="sidebar-user-info">
+          <span class="sidebar-username" id="sidebar-username">Kari Esimerkki</span>
+          <span class="sidebar-role" id="sidebar-role">Liitto / Coach Developer</span>
+        </div>
+      </div>
+      <div class="sidebar-divider"></div>
+      <ul class="nav-list">
+        <li>
+          <a href="#" class="nav-item active" data-view="dashboard">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+              <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+            </svg>
+            <span>Kojelauta</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-item" data-view="observations">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+            <span>Havainnoinnit</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-item" data-view="forms">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+            <span>Lomakkeet</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-item" data-view="criteria">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="8" y1="6" x2="21" y2="6"/>
+              <line x1="8" y1="12" x2="21" y2="12"/>
+              <line x1="8" y1="18" x2="21" y2="18"/>
+              <line x1="3" y1="6" x2="3.01" y2="6"/>
+              <line x1="3" y1="12" x2="3.01" y2="12"/>
+              <line x1="3" y1="18" x2="3.01" y2="18"/>
+            </svg>
+            <span>Kriteerit</span>
+          </a>
+        </li>
+        <li class="nav-separator">Valmentaja</li>
+        <li>
+          <a href="#" class="nav-item" data-view="selfassess">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+            <span>Itsearviointi</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-item" data-view="goals">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="6"/>
+              <circle cx="12" cy="12" r="2"/>
+            </svg>
+            <span>Tavoitteet</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-item" data-view="reports">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="20" x2="18" y2="10"/>
+              <line x1="12" y1="20" x2="12" y2="4"/>
+              <line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+            <span>Raportit</span>
+          </a>
+        </li>
+      </ul>
+      <div class="sidebar-bottom">
+        <a href="#" class="nav-item" id="logout-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          <span>Kirjaudu ulos</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- SIDEBAR OVERLAY -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="main-content" id="main-content">
+      <!-- Views injected here by JavaScript -->
+    </main>
+
+    <!-- BOTTOM NAV (mobile) -->
+    <nav class="bottom-nav">
+      <a href="#" class="bottom-nav-item active" data-view="dashboard">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+          <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+        </svg>
+        <span>Kojelauta</span>
+      </a>
+      <a href="#" class="bottom-nav-item" data-view="observations">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+        <span>Havainnoinnit</span>
+      </a>
+      <a href="#" class="bottom-nav-item" data-view="goals">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <circle cx="12" cy="12" r="6"/>
+          <circle cx="12" cy="12" r="2"/>
+        </svg>
+        <span>Tavoitteet</span>
+      </a>
+      <a href="#" class="bottom-nav-item" data-view="selfassess">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+        <span>Itsearviointi</span>
+      </a>
+      <a href="#" class="bottom-nav-item" data-view="reports">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="20" x2="18" y2="10"/>
+          <line x1="12" y1="20" x2="12" y2="4"/>
+          <line x1="6" y1="20" x2="6" y2="14"/>
+        </svg>
+        <span>Raportit</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- MODAL CONTAINER -->
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div id="modal-container" class="modal-container">
+      <div class="modal-header">
+        <h3 id="modal-title"></h3>
+        <button class="modal-close" id="modal-close">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+      <div class="modal-footer" id="modal-footer"></div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATIONS -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/components/modal.js"></script>
+  <script src="js/components/toast.js"></script>
+  <script src="js/components/chart.js"></script>
+  <script src="js/views/dashboard.js"></script>
+  <script src="js/views/observations.js"></script>
+  <script src="js/views/forms.js"></script>
+  <script src="js/views/criteria.js"></script>
+  <script src="js/views/selfassess.js"></script>
+  <script src="js/views/goals.js"></script>
+  <script src="js/views/reports.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
