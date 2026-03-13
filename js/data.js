@@ -203,3 +203,14 @@ const CDApp = {
 
 // Init seed data on load
 CDApp.seed();
+
+// Lisäapumuuttujat (lisätty views-päivityksen yhteydessä)
+CDApp.categoryEmojis = {
+  lajitaidot:   '🏒',
+  vuorovaikutus:'💬',
+  suunnittelu:  '📋',
+};
+
+CDApp.deleteGoal = function(id) {
+  this.save('goals', this.getGoals().filter(g=>g.id!==id));
+};
